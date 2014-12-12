@@ -22,10 +22,12 @@ Graph.prototype.hasEdge = function(fromNode, toNode){
 
 Graph.prototype.addEdge = function(fromNode, toNode){
 	this.nodes[fromNode].edges[toNode] = this.nodes[toNode];
+	this.nodes[toNode].edges[fromNode] = this.nodes[fromNode];
 };
 
 Graph.prototype.removeEdge = function(fromNode, toNode){
 	delete this.nodes[fromNode].edges[toNode];
+	delete this.nodes[toNode].edges[fromNode];
 };
 
 Graph.prototype.forEachNode = function(cb){
