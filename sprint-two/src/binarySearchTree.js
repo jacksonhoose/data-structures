@@ -7,17 +7,40 @@ var BinarySearchTree = function(value){
 
 	tree.insert = function(val, parent){
 		parent = parent || this;
-		var tree = new BinarySearchTree(val);
 
 		if(val < parent.value){
-			this.left = tree;
+			if(parent.left === null){
+				parent.left = new BinarySearchTree(val);
+			} else {
+				parent.insert(val, parent.left);
+			}
 		} else {
-			this.right = tree;
+			if(parent.right === null){
+				parent.right = new BinarySearchTree(val);
+			} else {
+				parent.insert(val, parent.right);
+			}
 		}
 	};
 
-	tree.contains = function(){
+	tree.contains = function(val, parent){
+		parent = parent || this;
 
+		// return _.reduce(tree, function(val, tree){
+		// 	return t
+		// }, tree.value);
+		if(parent.value === val) {
+			return true;
+		}
+		if(parent.left === null && parent.right === null){
+			return false;
+		} else {
+			if(val < parent.value){
+				parent.contains(val, parent.left);
+			} else {
+				parent.contains(val, parent.right);
+			}
+		}
 	};
 
 	tree.depthFirstLog = function(){
