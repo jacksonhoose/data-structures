@@ -21,6 +21,7 @@ var BinarySearchTree = function(value){
 				parent.insert(val, parent.right);
 			}
 		}
+
 	};
 
 	tree.contains = function(val, parent){
